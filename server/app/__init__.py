@@ -24,7 +24,12 @@ def create_app():
     db.init_app(app)
 
     # register blueprints
-    from app.api.search import search_blueprint
-    app.register_blueprint(search_blueprint)
+    from app.api.ping import ping_blueprint
+    from app.api.users import users_blueprint
+    from app.api.roles import roles_blueprint
+
+    app.register_blueprint(ping_blueprint)
+    app.register_blueprint(users_blueprint)
+    app.register_blueprint(roles_blueprint)
 
     return app
