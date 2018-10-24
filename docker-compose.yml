@@ -38,12 +38,13 @@ services:
       context: './client'
       dockerfile: Dockerfile
     volumes:
-      - ./client:/usr/src/app:cached
+      - ./client/src:/usr/src/app/src:cached
+      - ./client/public:/usr/src/app/public:cached
     ports:
       - '3001:3000' # expose ports - HOST:CONTAINER
     environment:
       - NODE_ENV=development
-      - REACT_APP_SERVER_URL=http://server
+      - REACT_APP_SERVER_URL=http://localhost:5000
       - CHOKIDAR_USEPOLLING=true
     links:
       - server

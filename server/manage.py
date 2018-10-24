@@ -12,7 +12,7 @@ app = create_app()
 manager = Manager(app)
 
 @manager.command
-def seed_db():
+def db_setup():
     db.drop_all()
     db.create_all()
     db.session.commit()

@@ -1,8 +1,29 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+
+  state = {
+    users: []
+  }
+
+  getUsers = () => {
+    console.log(process.env.REACT_APP_SERVER_URL);
+    const url = `${process.env.REACT_APP_SERVER_URL}/users`
+    axios.get(url)
+    .then((res) => {
+      console.log(res);
+      this.setState({
+        'users':res.data.users
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -11,14 +32,14 @@ class App extends Component {
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={this.getUsers}
           >
-            Learn React
-          </a>
+            Get Users
+          </button>
+          <div className="userData">
+            <code>{JSON.stringify(this.state.users)}</code>
+          </div>
         </header>
       </div>
     );
