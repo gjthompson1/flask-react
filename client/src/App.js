@@ -10,11 +10,9 @@ class App extends Component {
   }
 
   getUsers = () => {
-    console.log(process.env.REACT_APP_SERVER_URL);
     const url = `${process.env.REACT_APP_SERVER_URL}/users`
     axios.get(url)
     .then((res) => {
-      console.log(res);
       this.setState({
         'users':res.data.users
       })

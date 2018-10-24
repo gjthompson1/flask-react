@@ -28,6 +28,8 @@ To setup database
 
     docker-compose run server python manage.py db_setup
 
+To add new python modules or npm modules you will have to re-build.
+
 ### Liveness
 
 To check server is runnning:
